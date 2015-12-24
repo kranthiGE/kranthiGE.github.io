@@ -1,4 +1,21 @@
 ## Website Performance Optimization portfolio project
+***********
+Optimizations performed:
+Profile URL: http://kranthige.github.io/udprofile/
+Results from google page insights:
+Mobile: 94
+Desktop: 96
+
+Optimizations:
+- JS, html, css minification
+- load print.css using media='print' and created a new style-screen.css and referenced using media='screen'
+- inline css
+- moved analytics JS to the footer
+- Loading google fonts using Async
+- Re-sizing, compressing & adding media queries for images
+- Switched animation to use CSS 2D transforms
+- Used grunt to automated most of my tasks. Not truely successful with images compression plugins, still checking to automate using ImageMagick. please let me know if some was successful already and ready to help
+***********
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
