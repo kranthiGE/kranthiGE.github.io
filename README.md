@@ -15,6 +15,7 @@ Optimizations:
 - Re-sizing, compressing & adding media queries for images
 - Switched animation to use CSS 2D transforms
 - Used grunt to automated most of my tasks. Not truely successful with images compression plugins, still checking to automate using ImageMagick. please let me know if some was successful already and ready to help
+- Added a JS worker to modify the width of pizzas on slider change
 ***********
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
