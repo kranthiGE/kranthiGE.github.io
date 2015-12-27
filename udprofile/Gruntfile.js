@@ -38,7 +38,8 @@ module.exports = function(grunt) {
       build: {
         files: [
           {src: ['js/*.js'], dest: '<%= destFolder %>/js/main.min.js'},
-          {src: ['views/js/*.js'], dest: '<%= destFolder %>/views/js/main.min.js'}
+          {src: ['views/js/main.js'], dest: '<%= destFolder %>/views/js/main.min.js'},
+          {src: ['views/js/SliderWorker.js'], dest: '<%= destFolder %>/views/js/SliderWorker.min.js'}
         ]
       }
     },
