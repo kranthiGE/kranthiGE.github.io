@@ -10,7 +10,7 @@ Description: This map project loads top 25 hotels in bangalore on google map.
 - Creates markers for each hotel on google map so that user can click on it to see the corresponding map card loaded
 - User can realtime filter by providing fewl letters of hotel name in the search box
 
-URL:
+URL:http://kranthige.github.io/mapproject/
 
 References:
 https://developer.foursquare.com
