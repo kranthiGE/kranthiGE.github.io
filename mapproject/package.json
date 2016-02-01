@@ -1,0 +1,34 @@
+{
+  "name": "kranthi-neighbourhood-map-project",
+  "version": "1.0.0",
+  "description": "Kranthi's neighbourhood map project for Udacity nano degree project 5",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-cssmin": "^0.14.0",    
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-uglify": "^0.11.0",
+    "grunt-jsonlint": "^1.0.6",
+    "grunt-minify-html": "^2.0.0",
+    "jshint": "^2.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kranthiGE/"
+  },
+  "keywords": [
+    "kranthi",
+    "neighbourhood",
+    "project"
+  ],
+  "author": "Kranthi Kiran",
+  "license": "ISC"
+}
