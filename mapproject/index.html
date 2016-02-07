@@ -1,98 +1,83 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content="Kranthi Kiran"><title>Kranthi's Hotel Search App</title><style type=text/css>
-    	/* common styles */
-		*{
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing:border-box;
-			-ms-box-sizing: border-box;
-			box-sizing: border-box;
-		}
-
-		*{
-			font-family: "Lato", sans-serif;
-			color: #030d2d;
-			font-weight: 300;
-		}
-
-		body{
-			background: #eee;
-			margin:0;
-		}
-
-		/* various text styles */
-		.text-thin{
-			font-weight: 100;
-			max-width: 100%;
-		}
-
-		.text-grey{
-			color: #bcbbbb;
-		}
-
-		.text-large{
-			font-weight: 100;
-			font-size: 50px;
-			max-width: 100%;
-		}
-
-		.search-box {
-			padding:20px;
-			width:410px;
-			z-index:9;
-			position:fixed;
-		}
-
-		@media (max-width:500px) {
-			.divtop{
-				width:100%;
-			}
-			.search-box {
-				width:100%;
-			}
-		}
-
-		.divtop{
-			height:100%;
-			overflow-y: auto;
-			top:0;
-			right:0;
-			left:0;
-			bottom: 0;
-			position:fixed;
-		}
-
-		#map {
-			height: 100%;
-		}
-
-		#mapDiv {
-			position:fixed;
-			height:100vh;
-			width:100vw;
-		}
-
-		/* Card styles: background & links */
-		.btn-card-bg {
-			background: rgb(255, 204, 102);
-			color: #574500;
-			border: none;
-			-moz-box-shadow: none !important;
-			-webkit-box-shadow: none !important;
-			box-shadow: none !important;
-			width: 100%;
-		}
-
-		.btn-card-bg:hover, .btn-card-bg:focus {
-		 	background: rgb(255, 255, 204);
-		}
-
-		.btn-card-bg:active {
-			background: rgb(255, 255, 204);
-		}
-
-		.card-back-ground {
-			background: rgb(255, 255, 204);
-		}
-    </style></head><body><section><div class=container><main><div class=divtop><div class="row search-box"><div class="col-md-12 text-center"><input type=text class=form-control aria-label=... placeholder="Filter hotels by typing..." data-bind="value: search, valueUpdate: 'afterkeydown'"><div class=panel-group role=tablist><div class="panel panel-default"><div class=panel-heading role=tab id=collapseListGroupHeading1><h4 class=panel-title><a role=button data-toggle=collapse href=#collapseListGroup1 aria-expanded=true aria-controls=collapseListGroup1>Hotels list <span class="glyphicon glyphicon-triangle-bottom" aria-hidden=true></span></a>&nbsp;<span class=badge data-bind="text: filteredPlaces().length"></span></h4></div><div id=collapseListGroup1 class="panel-collapse collapse pre-scrollable" role=tabpanel aria-labelledby=collapseListGroupHeading1 aria-expanded=false><ul class=list-group data-bind="foreach: filteredPlaces"><li class=list-group-item><div class="card card-back-ground"><div class="card-block btn btn-card-bg" data-bind="click: $parent.setPlaceMarker"><h4 class=card-title data-bind="text: name"></h4><h6 class="card-subtitle text-muted" data-bind="text: categories[0].name"></h6></div><div class=row><div class=col-sm-5><img data-src=... alt="Card image" data-bind="visible: photoVisible, attr: {src: photoPath}" class=img-thumbnail> <img data-src=... alt="Card image" data-bind="visible: !photoVisible(), attr: {src: 'http://placehold.it/100/FFFFCC/ffffff&text=' + name.toUpperCase() }"></div><div class=col-sm-7><div class=card-block><p class="card-text text-left"><b>Address:</b> <span data-bind="text: location.formattedAddress[0]"></span></p><p class="card-text text-left"><b><span data-bind="text: stats.checkinsCount"></span> People visited</b></p></div></div></div><div class=row><div class=col-sm-12><a target=_blank class=card-link data-bind="text: 'FourSquare link', attr: {href: 'https://foursquare.com/explore?mode=url&near=Bangalore Karnataka&nearGeoId=72057594039205269&q=' + name.toLowerCase() }"></a></div></div></div></li></ul></div></div></div></div><div class="alert alert-warning" role=alert data-bind="visible: !loadingComplete"><a href=# class=alert-link>Searching hotels in Bangalore, please wait...</a></div><div class="alert alert-danger" role=alert data-bind="visible: error"><span>Oops! Unable to retrieve data from foursquare and google. Please check your internet...</span><span data-bind="text: errorText"></span></div></div><div id=mapDiv><div id=map></div></div></div></main></div></section><script type=text/javascript>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kranthi Kiran">
+    <title>Kranthi's Hotel Search App</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+	<body>
+		<section>
+			<div class="container">
+			 	<main>
+					<div class="divtop">
+						<div class="row search-box">
+							<div class="col-md-12 text-center">
+					      		<input type="text" class="form-control" aria-label="..." placeholder="Filter hotels by typing..." data-bind="value: search, valueUpdate: 'afterkeydown'">
+								<div class="panel-group" role="tablist">
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+											<h4 class="panel-title">
+												<a class="" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1"> Hotels list <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> </a>&nbsp;<span class="badge" data-bind="text: filteredPlaces().length"></span>
+											</h4>
+										</div>
+										<div id="collapseListGroup1" class="panel-collapse collapse pre-scrollable" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="false">
+											<ul class="list-group" data-bind="foreach: filteredPlaces">
+												<li class="list-group-item" >
+													<div class="card card-back-ground">
+														<div class="card-block btn btn-card-bg" data-bind="click: $parent.setPlaceMarker">
+															<h4 class="card-title" data-bind="text: name"></h4>
+															<h6 class="card-subtitle text-muted" data-bind="text: categories[0].name"></h6>
+														</div>
+														<div class="row">
+															<div class="col-sm-5">
+																<img data-src="..." alt="Card image" data-bind="visible: photoVisible, attr: {src: photoPath}" class="img-thumbnail">
+																<img data-src="..." data-bind="visible: !photoVisible(), attr: {src: 'http://placehold.it/100/FFFFCC/ffffff&text=' + name.toUpperCase() }" alt="thumbnail">
+															</div>
+															<div class="col-sm-7">
+																<div class="card-block">
+																	<p class="card-text text-left">
+																		<b>Address:</b>
+																		<span data-bind="text: location.formattedAddress[0]"></span>
+																	</p>
+																	<p class="card-text text-left">
+																		<b>
+																			<span data-bind="text: stats.checkinsCount"></span>
+																			People visited
+																		</b>
+																	</p>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-12">
+																<a target="_blank" class="card-link" data-bind="text: 'FourSquare link', attr: {href: 'https://foursquare.com/explore?mode=url&near=Bangalore Karnataka&nearGeoId=72057594039205269&q=' + name.toLowerCase() }"></a>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="alert alert-warning" role="alert" data-bind="visible: !loadingComplete">
+								  <a href="#" class="alert-link">Searching hotels in Bangalore, please wait...</a>
+							</div>
+							<div class="alert alert-danger" role="alert" data-bind="visible: error">
+								<span data-bind="text: errorText"></span>
+							</div>
+						</div>
+						<div id="mapDiv" class="mapDiv">
+							<div id="map" class="map"></div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</section>
+		<script>
 			var hrefVal = '';
 			var bootStrapCss = function() {
 				var l = document.createElement('link');
@@ -118,4 +103,13 @@
 				window.addEventListener('load', bootStrapCss);
 				window.addEventListener('load', bootStrapThemeCss);
 			}
-		</script><script language=javascript src=js/lib/jquery-2.1.4.min.js></script><script language=javascript src=js/lib/bootstrap.min.js></script><script language=javascript src=js/lib/knockout-3.4.0.js></script><script language=javascript src=js/foursquare.api.min.js async></script><script language=javascript src=js/main.min.js async></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrTycjKbwOG8ct7MCvOBagM_baTto6ajQ&callback=init" onerror=mapOnLoadError() async defer></script></body></html>
+		</script>
+
+		<script src="js/lib/jquery-2.1.4.min.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/lib/knockout-3.4.0.js"></script>
+		<script src="js/foursquare.api.min.js" async></script>
+		<script src="js/main.min.js" async></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrTycjKbwOG8ct7MCvOBagM_baTto6ajQ&callback=init" onerror="mapOnLoadError()" async defer></script>
+	</body>
+</html>

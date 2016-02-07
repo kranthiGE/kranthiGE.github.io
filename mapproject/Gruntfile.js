@@ -42,6 +42,13 @@ module.exports = function(grunt) {
         ]
       }
     },
+    cssmin: {
+      target: {
+        files: [
+          {expand: true, src: 'css/style.css', dest: '<%= destFolder %>', ext: '.min.css'}
+        ]
+      }
+    },
     minifyHtml: {
       options: {
         cdata: true
@@ -95,5 +102,5 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-jsonlint');
 
   // Register our own custom task alias.
-  grunt.registerTask('default', ['clean', 'uglify', 'minifyHtml', 'copy']);
+  grunt.registerTask('default', ['clean', 'uglify', 'cssmin', 'minifyHtml', 'copy']);
 };
