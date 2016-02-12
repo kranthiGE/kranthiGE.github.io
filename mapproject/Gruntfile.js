@@ -102,5 +102,5 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-jsonlint');
 
   // Register our own custom task alias.
-  grunt.registerTask('default', ['clean', 'uglify', 'cssmin', 'minifyHtml', 'copy']);
+  grunt.registerTask('default', ['clean', 'uglify', 'jshint', 'cssmin', 'minifyHtml', 'copy']);
 };
